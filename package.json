@@ -1,0 +1,32 @@
+{
+  "name": "chacripan",
+  "version": "0.1.0",
+  "description": "parse Nintendo eshop in graphQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require babel-core/register",
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d dist",
+    "serve": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "config": "^1.28.1",
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
+    "graphql": "^0.11.7",
+    "lodash": "^4.17.4",
+    "react-relay-network-layer": "^2.1.2"
+  }
+}
