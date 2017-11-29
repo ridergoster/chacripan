@@ -1,4 +1,5 @@
 import { storeQueries } from './store'
+import { regionQueries } from './region'
 
 import {
   GraphQLBoolean,
@@ -18,6 +19,7 @@ const QueryType = new ObjectType({
       resolve: (...args) => args,
     },
     ...storeQueries,
+    ...regionQueries,
   }),
 })
 

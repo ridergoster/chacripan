@@ -9,7 +9,12 @@ import {
   schema,
 } from './schema'
 
+import {
+  get,
+} from 'lodash'
+
 const app = express()
+
 const graphqlServer = graphqlHTTP((req, res) => ({
   schema: schema,
   graphiql: true,
@@ -39,9 +44,9 @@ const graphqlServer = graphqlHTTP((req, res) => ({
   },
 }))
 
-app.use('/', (req, res) => { res.send(200) })
-app.use('/graphql/batch', bodyParser.json(), graphqlBatchHTTPWrapper(graphqlServer))
-app.use('/graphql', bodyParser.json(), graphqlServer)
+app.use(bodyParser.json())
+app.use('/graphql/batch', graphqlBatchHTTPWrapper(graphqlServer))
+app.use('/graphql', graphqlServer)
 
 const PORT = 3000
 

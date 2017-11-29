@@ -3,21 +3,34 @@ import {
 } from './type'
 
 import {
+  RegionEnum,
+} from '../region'
+
+import {
+  GraphQLNonNull,
+  GraphQLList,
   GraphQLString,
 } from 'graphql'
 
-const findBySlug = {
-  type: StoreType,
+import {
+  getShopsRegion,
+} from '../../api/shops'
+
+const findStores = {
+  type: new GraphQLList(StoreType),
   args: {
-    slug: {type: GraphQLString},
+    region: {type: RegionEnum},
   },
-  resolve(root, {slug}) {
-    return {
-      'slug': slug
+  resolve(root, {region}) {
+    try {
+      return getShopsRegion(region)
+    }
+    catch (err) {
+      console.log('errorr', err)
     }
   },
 }
 
 export const storeQueries = {
-  store: findBySlug,
+  stores: findStores,
 }
