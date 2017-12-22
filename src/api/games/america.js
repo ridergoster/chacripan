@@ -21,6 +21,7 @@ export function getGamesAmerica(system, limit) {
     .then((res) =>  {
       const body = JSON.parse(res.text)
       const games = get(body, 'games.game')
+      const filter = get(body, 'filter')
 
       return isArray(games)
         ? games

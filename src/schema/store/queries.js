@@ -22,12 +22,7 @@ const findStores = {
     region: {type: RegionEnum},
   },
   resolve(root, {region}) {
-    try {
       return getShopsRegion(region)
-    }
-    catch (err) {
-      console.log('errorr', err)
-    }
   },
 }
 

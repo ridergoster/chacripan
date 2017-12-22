@@ -34,7 +34,6 @@ export const GameUSType = new ObjectType({
     eshopPrice: {
       type: GraphQLString,
       resolve: async (root) => {
-        console.log('eshopPrice', root)
         return get(root, 'eshop_price')
       },
     },

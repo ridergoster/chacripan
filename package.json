@@ -21,6 +21,8 @@
     "nodemon": "^1.12.1"
   },
   "dependencies": {
+    "apollo-engine": "^0.5.6",
+    "apollo-server-express": "^1.2.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "config": "^1.28.1",

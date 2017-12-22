@@ -1,7 +1,7 @@
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import bodyParser from 'body-parser'
 import config from 'config'
 import express from 'express'
-import graphqlHTTP from 'express-graphql'
 import { formatError } from 'graphql'
 import { graphqlBatchHTTPWrapper } from 'react-relay-network-layer'
 
@@ -15,14 +15,15 @@ import {
 
 const app = express()
 
-const graphqlServer = graphqlHTTP((req, res) => ({
+const graphqlServer = graphqlExpress((req, res) => ({
   schema: schema,
-  graphiql: true,
   context: req,
   rootValue: {
     request: req,
     response: res,
   },
+  tracing: true,
+  cacheControl: true,
   pretty: process.env.NODE_ENV !== 'production',
   formatError: (error) => {
     let data = formatError(error)
@@ -47,6 +48,7 @@ const graphqlServer = graphqlHTTP((req, res) => ({
 app.use(bodyParser.json())
 app.use('/graphql/batch', graphqlBatchHTTPWrapper(graphqlServer))
 app.use('/graphql', graphqlServer)
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 const PORT = 3000
 
